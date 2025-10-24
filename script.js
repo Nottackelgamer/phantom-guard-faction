@@ -94,7 +94,7 @@ if (document.getElementById('lookup-form')) {
 
         try {
             // Replace with your deployed API URL (e.g., from Vercel: https://your-app.vercel.app/api/lookup)
-            const response = await fetch(`YOUR_DEPLOYED_API_URL/api/lookup?discordUsername=${encodeURIComponent(username)}`);
+            const response = await fetch(`https://your-app.vercel.app/api/lookup?discordUsername=${encodeURIComponent(username)}`);
             const data = await response.json();
             if (data.found) {
                 resultDiv.innerHTML = '<h3>Member Found:</h3>' + data.data.map(obj => `<p>${Object.keys(obj)[0]}: ${Object.values(obj)[0]}</p>`).join('');

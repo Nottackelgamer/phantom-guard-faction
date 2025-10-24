@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[GAR] Phantom Guard - Member Lookup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="tabs">
+        <a href="index.html" class="tab-link">Home</a> <!-- Added Home link -->
+        <a href="info.html" class="tab-link">Faction Information</a>
+        <a href="docs.html" class="tab-link">Faction Documents</a>
+        <a href="lookup.html" class="tab-link active">Member Lookup</a>
+        <a href="links.html" class="tab-link">Important Links</a>
+        <a href="morphs.html" class="tab-link">Faction Morphs</a>
+    </nav>
+    <div class="tab-content">
+        <header class="hero-section">
+            <h1>Member Lookup</h1>
+            <p>Find faction members by their Discord username.</p>
+        </header>
+        <div class="content-grid">
+            <div class="card">
+                <h3>Search for a Member</h3>
+                <form id="lookup-form">
+                    <label for="username">Enter Discord Username:</label>
+                    <input type="text" id="username" required>
+                    <button type="submit" class="btn-launch">Search</button>
+                </form>
+                <div id="lookup-result"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2023 [GAR] Phantom Guard. All rights reserved. Website Creator: <span class="user">@Nottackelgamer</span></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[GAR] Phantom Guard - Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Video Section (Autoplays, then hides) -->
+    <div id="video-section" class="section active">
+        <video id="welcome-video" autoplay playsinline>
+            <source src="welcome.mp4" type="video/mp4"> <!-- Replace with your video URL -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Welcome Section (Hidden until video ends) -->
+    <div id="welcome-section" class="section">
+        <div class="welcome-overlay">
+            <div class="logo">
+                <img src="Phantom_Guard_pfp.png" alt="[GAR] Phantom Guard Logo" style="width: 100px; height: auto; border-radius: 3px;"> <!-- Replace with logo URL -->
+            </div>
+            <h1>Welcome to [GAR] Phantom Guard</h1>
+            <p>Elite protectors of Coruscant. Join the ranks and explore our faction.</p>
+            <button id="enter-btn" class="btn-launch">Enter the Faction</button>
+        </div>
+    </div>
+
+    <!-- Image Gallery Section (Appears on scroll) -->
+    <div id="gallery-section" class="section">
+        <h2>Faction Showcase</h2>
+        <div class="gallery-container">
+            
+            <div class="gallery">
+                <img src="Phantom_Guard_pfp.png" alt="Gallery Image 1" class="gallery-img"> <!-- Replace with image URLs -->
+                <img src="Phantom_Guard_wedge.png" alt="Gallery Image 2" class="gallery-img">
+                <img src="Gallery 1.png" alt="Gallery Image 3" class="gallery-img">
+                <img src="Galery 2.png" alt="Gallery Image 4" class="gallery-img">
+                <img src="Company_Commander.png" alt="Gallery Image 5" class="gallery-img">
+                <img src="Company_Executive.png" alt="Gallery Image 6" class="gallery-img">
+                <img src="Abyss_CL.png" alt="Gallery Image 7" class="gallery-img">
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

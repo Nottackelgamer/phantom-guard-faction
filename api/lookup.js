@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
   if (!username) return res.status(400).send('Missing username');
 
   // Replace with your actual Google Sheets details
-  const SHEET_ID = ''; // e.g., '1ABC123...your-spreadsheet-id'
+  const SHEET_ID = '1KbPTvmZdWRyREnB9HC4AHPUp_qow0uss40stNvScGEE'; // e.g., '1ABC123...your-spreadsheet-id'
   const API_KEY = 'AIzaSyDIg-I7jcAucRcI_BRC6okfLqjVzgf1wuk'; // Your API key
 
   // Define the two ranges (subsheets) to query

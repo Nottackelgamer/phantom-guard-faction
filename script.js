@@ -1,6 +1,6 @@
 // Configurable Image URLs (Update these with your actual URLs if needed)
 const config = {
-    welcomeBg: 'YOUR_WELCOME_BG_IMAGE_URL', // For welcome section background
+    welcomeBg: 'Phantom_Guard_wedge.png', // For welcome section background
     tabBg: 'YOUR_TAB_BG_IMAGE_URL'          // For tab content background (if needed)
 };
 
@@ -93,7 +93,7 @@ if (document.getElementById('lookup-form')) {
         resultDiv.innerHTML = 'Searching...';
 
         // Google Sheets API details (Update these!)
-        const SHEET_ID = ''; // e.g., '1ABC123...your-spreadsheet-id'
+        const SHEET_ID = '1KbPTvmZdWRyREnB9HC4AHPUp_qow0uss40stNvScGEE'; // e.g., '1ABC123...your-spreadsheet-id'
         const API_KEY = 'AIzaSyDIg-I7jcAucRcI_BRC6okfLqjVzgf1wuk'; // Your API key (exposed - use server for security)
         
         // Define ranges for multiple subsheets

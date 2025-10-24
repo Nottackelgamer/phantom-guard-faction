@@ -1,6 +1,6 @@
 // Configurable Image URLs (Update these with your actual URLs if needed)
 const config = {
-    welcomeBg: 'Phantom_Guard_wedge.png', // For welcome section background
+    welcomeBg: 'YOUR_WELCOME_BG_IMAGE_URL', // For welcome section background
     tabBg: 'YOUR_TAB_BG_IMAGE_URL'          // For tab content background (if needed)
 };
 
@@ -39,8 +39,8 @@ const gallery = document.querySelector('.gallery');
 const images = document.querySelectorAll('.gallery-img');
 let currentIndex = 0;
 
-console.log('Gallery element found:', !!gallery); // Check if gallery exists
-console.log('Gallery images found:', images.length); // Check image count
+console.log('Gallery element found:', !!gallery); // Debug: Check if gallery exists
+console.log('Gallery images found:', images.length); // Debug: Check image count
 console.log('Images:', images); // List images for debugging
 
 function updateGallery() {
@@ -84,7 +84,7 @@ images.forEach((img, index) => {
     });
 });
 
-// Member Lookup (only on lookup.html)
+// Member Lookup (Client-Side - No Server Needed)
 if (document.getElementById('lookup-form')) {
     document.getElementById('lookup-form').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -92,18 +92,39 @@ if (document.getElementById('lookup-form')) {
         const resultDiv = document.getElementById('lookup-result');
         resultDiv.innerHTML = 'Searching...';
 
+        // Google Sheets API details (Update these!)
+        const SHEET_ID = ''; // e.g., '1ABC123...your-spreadsheet-id'
+        const API_KEY = 'AIzaSyDIg-I7jcAucRcI_BRC6okfLqjVzgf1wuk'; // Your API key (exposed - use server for security)
+        
+        // Define ranges for multiple subsheets
+        const ranges = [
+            'Officers!A1:Z100',        // First subsheet
+            'Company members!A1:Z100'  // Second subsheet
+        ];
+
         try {
-            // Replace with your deployed API URL (e.g., from Vercel: https://your-app.vercel.app/api/lookup)
-            const response = await fetch(`https://your-app.vercel.app/api/index?discordUsername=${encodeURIComponent(username)}`);
-            const data = await response.json();
-            if (data.found) {
-                resultDiv.innerHTML = '<h3>Member Found:</h3>' + data.data.map(obj => `<p>${Object.keys(obj)[0]}: ${Object.values(obj)[0]}</p>`).join('');
+            let match = null;
+            let headers = null;
+
+            // Loop through ranges
+            for (const range of ranges) {
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?key=${API_KEY}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                const rows = data.values || [];
+                headers = rows[0];
+                match = rows.slice(1).find(row => row.includes(username));
+                if (match) break;
+            }
+
+            if (match) {
+                resultDiv.innerHTML = '<h3>Member Found:</h3>' + match.map((val, i) => `<p>${headers[i] || `Column ${i + 1}`}: ${val}</p>`).join('');
             } else {
                 resultDiv.innerHTML = '<p>No member found with that username.</p>';
             }
         } catch (error) {
-            resultDiv.innerHTML = '<p>Error fetching data. Try again.</p>';
-            console.error(error);
+            resultDiv.innerHTML = '<p>Error fetching data. Check console for details.</p>';
+            console.error('Lookup error:', error);
         }
     });
 }

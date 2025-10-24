@@ -112,7 +112,7 @@ if (document.getElementById('lookup-form')) {
                 const response = await fetch(url);
                 const data = await response.json();
                 const rows = data.values || [];
-                headers = rows[0];
+                headers = rows[5];
                 match = rows.slice(1).find(row => row.includes(username));
                 if (match) break;
             }

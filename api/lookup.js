@@ -11,15 +11,27 @@ module.exports = async (req, res) => {
 
   // Replace with your actual Google Sheets details
   const SHEET_ID = ''; // e.g., '1ABC123...your-spreadsheet-id'
-  const RANGE = ''; // e.g., 'Sheet1!A1:Z100' or 'Officers!A1:Z100' for subsheets
   const API_KEY = 'AIzaSyDIg-I7jcAucRcI_BRC6okfLqjVzgf1wuk'; // Your API key
 
+  // Define the two ranges (subsheets) to query
+  const ranges = [
+    'Officers!A1:Z100',        // First range: Officers subsheet
+    'Company members!A1:Z100'  // Second range: Company members subsheet
+  ];
+
   try {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
-    const response = await axios.get(url);
-    const rows = response.data.values || [];
-    const headers = rows[0]; // First row as headers
-    const match = rows.slice(1).find(row => row.includes(username)); // Search from row 2 onwards
+    let match = null;
+    let headers = null;
+
+    // Loop through each range to find the username
+    for (const range of ranges) {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?key=${API_KEY}`;
+      const response = await axios.get(url);
+      const rows = response.data.values || [];
+      headers = rows[0]; // Use headers from the first range (assuming consistent)
+      match = rows.slice(1).find(row => row.includes(username)); // Search from row 2 onwards
+      if (match) break; // Stop if found in this range
+    }
 
     if (match) {
       // Map row data to key-value pairs using headers

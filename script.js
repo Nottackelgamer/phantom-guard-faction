@@ -39,8 +39,8 @@ const gallery = document.querySelector('.gallery');
 const images = document.querySelectorAll('.gallery-img');
 let currentIndex = 0;
 
-console.log('Gallery element found:', !!gallery); // Debug: Check if gallery exists
-console.log('Gallery images found:', images.length); // Debug: Check image count
+console.log('Gallery element found:', !!gallery); // Check if gallery exists
+console.log('Gallery images found:', images.length); // Check image count
 console.log('Images:', images); // List images for debugging
 
 function updateGallery() {

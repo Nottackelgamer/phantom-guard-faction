@@ -496,3 +496,20 @@ a {
 .text-style {
     font-family: monospace;
 }
+
+h1 {
+    font-family: serif;
+    transition: 0.3s ease;
+    text-shadow: 0 30px 30px rgba(255, 107, 107, 0.629);
+}
+
+h1:hover {
+    font-size: 2.6em;
+    transition: 0.3s ease;
+    text-shadow: 0 7px 20px rgba(255, 107, 107, 0.866);
+}
+
+#text {
+    font-family: Times New Roman;
+    word-wrap: none;
+}

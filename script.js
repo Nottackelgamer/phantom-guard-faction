@@ -4,25 +4,6 @@ const config = {
     tabBg: ''          // For tab content background (if needed)
 };
 
-// Video Play Button (for mobile/autoplay fallback)
-const playBtn = document.getElementById('play-video-btn');
-const video = document.getElementById('welcome-video');
-const videoSection = document.getElementById('video-section');
-const welcomeSection = document.getElementById('welcome-section');
-if (playBtn && video) {
-    playBtn.addEventListener('click', () => {
-        video.play();
-        playBtn.style.display = 'none'; // Hide button after play
-    });
-}
-if (video) {
-    video.addEventListener('ended', () => {
-        videoSection.style.display = 'none';
-        welcomeSection.classList.add('active');
-        welcomeSection.scrollIntoView({ behavior: 'smooth' });
-    });
-}
-
 // Apply backgrounds dynamically
 if (document.querySelector('#welcome-section')) {
     document.querySelector('#welcome-section').style.backgroundImage = `url(${config.welcomeBg})`;
@@ -31,12 +12,29 @@ if (document.querySelector('.tab-content')) {
     document.querySelector('.tab-content').style.backgroundImage = `url(${config.tabBg})`;
 }
 
-// Video Autoplay and Transition
+// Video Handling (Autoplay with Play Button Fallback)
+const playBtn = document.getElementById('play-video-btn');
 const video = document.getElementById('welcome-video');
 const videoSection = document.getElementById('video-section');
 const welcomeSection = document.getElementById('welcome-section');
 
+if (playBtn && video) {
+    // Show play button initially (for mobile or autoplay failure)
+    playBtn.style.display = 'block';
+
+    playBtn.addEventListener('click', () => {
+        video.play();
+        playBtn.style.display = 'none'; // Hide button after play
+    });
+}
+
 if (video) {
+    // Try autoplay
+    video.play().catch(() => {
+        // Autoplay failed (e.g., mobile), keep play button visible
+        if (playBtn) playBtn.style.display = 'block';
+    });
+
     video.addEventListener('ended', () => {
         // Hide video section and show welcome section
         videoSection.style.display = 'none';
@@ -131,8 +129,8 @@ if (document.getElementById('lookup-form')) {
                 const response = await fetch(url);
                 const data = await response.json();
                 const rows = data.values || [];
-                headers = rows[4]; // Headers are in row 4 (0-indexed as 3)
-                match = rows.slice(5).find(row => row.includes(username)); // Search from row 5 onwards (after headers)
+                headers = rows[4]; // Headers are in row 5 (0-indexed as 4)
+                match = rows.slice(5).find(row => row.includes(username)); // Search from row 6 onwards (after headers)
                 if (match) break;
             }
 

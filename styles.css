@@ -12,7 +12,6 @@ body {
 
 /* Pages */
 .page {
-    display: none;
     height: 100vh;
     position: relative;
 }

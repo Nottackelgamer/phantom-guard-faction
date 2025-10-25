@@ -53,7 +53,8 @@ body {
 
 /* Glass Slab Button Style (Applied to All Buttons) */
 /* Star Wars-Themed Advanced Black/White Glass Slab Buttons */
-.btn, .btn-launch, .play-video-btn, .gallery-btn {
+/* Star Wars-Themed Advanced Black/White Glass Slab Buttons */
+.btn, .btn-launch, .gallery-btn {
     background: 
         radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05) 0%, transparent 50%),
         linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(10,10,10,1) 50%, rgba(0,0,0,0.98) 100%);
@@ -65,7 +66,7 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
     box-shadow: 
         0 0 15px rgba(255,255,255,0.2), /* Subtle white halo */
         inset 0 0 15px rgba(255,255,255,0.03); /* Inner white reflection */
@@ -78,7 +79,7 @@ body {
     animation: imperialBreathe 4s ease-in-out infinite; /* Subtle breathing like a console */
 }
 
-.btn::before, .btn-launch::before, .play-video-btn::before, .gallery-btn::before {
+.btn::before, .btn-launch::before, .gallery-btn::before {
     content: '';
     position: absolute;
     top: 0;
@@ -93,7 +94,7 @@ body {
     animation: hologramRipple 3s linear infinite; /* Holographic ripple effect */
 }
 
-.btn::after, .btn-launch::after, .play-video-btn::after, .gallery-btn::after {
+.btn::after, .btn-launch::after, .gallery-btn::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -110,23 +111,23 @@ body {
     opacity: 0.4;
 }
 
-.btn:hover, .btn-launch:hover, .play-video-btn:hover, .gallery-btn:hover {
+.btn:hover, .btn-launch:hover, .gallery-btn:hover {
     border-color: rgba(0,150,255,0.9); /* Blue Jedi border on hover */
     box-shadow: 
         0 0 30px rgba(0,150,255,0.5), /* Blue glow */
         inset 0 0 30px rgba(255,255,255,0.1); /* Enhanced white inner light */
-    transform: skew(-12deg) perspective(500px) rotateX(8deg) scale(1.08); /* Deeper 3D on hover */
+    transform: skew(-12deg) perspective(500px) rotateX(8deg); /* Deeper 3D on hover (no scale to prevent movement) */
     animation: forcePulse 1.2s ease-in-out infinite alternate; /* Pulsing like a lightsaber */
 }
 
-.btn:hover::before, .btn-launch:hover::before, .play-video-btn:hover::before, .gallery-btn:hover::before {
+.btn:hover::before, .btn-launch:hover::before, .gallery-btn:hover::before {
     left: 150%;
     background: 
         linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%), /* Brighter white sweep */
         radial-gradient(circle, rgba(0,150,255,0.4) 0%, transparent 70%); /* Stronger blue glow */
 }
 
-.btn:hover::after, .btn-launch:hover::after, .play-video-btn:hover::after, .gallery-btn:hover::after {
+.btn:hover::after, .btn-launch:hover::after, .gallery-btn:hover::after {
     transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
     opacity: 0.7;
     background: 
@@ -134,9 +135,9 @@ body {
         radial-gradient(circle, rgba(0,150,255,0.2) 0%, transparent 50%);
 }
 
-.btn:active, .btn-launch:active, .play-video-btn:active, .gallery-btn:active {
+.btn:active, .btn-launch:active, .gallery-btn:active {
     border-color: rgba(255,0,0,0.9); /* Red Sith border on click */
-    transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(0.92);
+    transform: skew(-12deg) perspective(500px) rotateX(3deg); /* No scale to prevent movement */
     box-shadow: 
         0 0 20px rgba(255,0,0,0.6), /* Red shockwave */
         inset 0 0 25px rgba(255,255,255,0.2);
@@ -184,9 +185,9 @@ body {
 }
 
 @keyframes darkSideShock {
-    0% { transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(1); }
-    50% { transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(1.05); box-shadow: 0 0 30px rgba(255,0,0,0.8); }
-    100% { transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(0.92); }
+    0% { transform: skew(-12deg) perspective(500px) rotateX(3deg); }
+    50% { transform: skew(-12deg) perspective(500px) rotateX(3deg); box-shadow: 0 0 30px rgba(255,0,0,0.8); }
+    100% { transform: skew(-12deg) perspective(500px) rotateX(3deg); }
 }
 
 @keyframes saberIgnite {
@@ -195,7 +196,7 @@ body {
 }
 
 /* Particle Effects for Star Wars "Force" Feel */
-.btn::after::before, .btn-launch::after::before, .play-video-btn::after::before, .gallery-btn::after::before {
+.btn::after::before, .btn-launch::after::before, .gallery-btn::after::before {
     content: '';
     position: absolute;
     width: 3px;

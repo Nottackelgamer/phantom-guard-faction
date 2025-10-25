@@ -24,7 +24,7 @@ body {
 #welcome {
     background: url('Phantom_Guard_wedge.png') no-repeat center cover; /* Replace with background image URL */
     background-blend-mode: overlay;
-    background-color:linear-gradient(90deg, #2c3e50, #34495e);
+    background-color: linear-gradient(90deg, #2c3e50, #34495e);
 }
 #welcome-video {
     width: 100%;
@@ -32,7 +32,7 @@ body {
     object-fit: cover;
     position: absolute;
     z-index: -1;
-    box-shadow:0 0 25px rgba(255, 255, 255, 0.9) ;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
 }
 .welcome-overlay {
     position: absolute;
@@ -50,34 +50,169 @@ body {
     margin-bottom: 20px;
     border: 10px;
 }
-.btn-launch { /* Styled launch button */
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    border: none;
+
+/* Glass Slab Button Style (Applied to All Buttons) */
+/* Star Wars-Themed Advanced Black/White Glass Slab Buttons */
+.btn, .btn-launch, .gallery-btn {
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(10,10,10,1) 50%, rgba(0,0,0,0.98) 100%);
+    border: 3px solid rgba(255,255,255,0.8); /* White imperial border */
+    color: #ffffff; /* White text for contrast */
     padding: 15px 30px;
-    color: white;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
-    transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 
+        0 0 15px rgba(255,255,255,0.2), /* Subtle white halo */
+        inset 0 0 15px rgba(255,255,255,0.03); /* Inner white reflection */
+    transform: skew(-12deg) perspective(500px) rotateX(3deg); /* Parallelogram with Star Wars depth */
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace; /* Monospace for tech feel */
+    clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%); /* Sleek imperial shape */
+    animation: imperialBreathe 4s ease-in-out infinite; /* Subtle breathing like a console */
 }
-.btn-launch::before { /* Icon-like effect */
+
+.btn::before, .btn-launch::before, .gallery-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%), /* White light sweep */
+        radial-gradient(circle, rgba(0,150,255,0.2) 0%, transparent 70%); /* Subtle blue Jedi glow */
+    transition: left 0.8s ease;
+    z-index: 1;
+    animation: hologramRipple 3s linear infinite; /* Holographic ripple effect */
+}
+
+.btn::after, .btn-launch::after, .gallery-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180%;
+    height: 180%;
+    background: 
+        repeating-conic-gradient(from 0deg, rgba(255,0,0,0.05) 0deg 15deg, transparent 15deg 30deg), /* Red Sith energy lines */
+        radial-gradient(circle, rgba(0,150,255,0.1) 0%, transparent 50%); /* Blue force field */
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: transform 0.6s ease;
+    z-index: 0;
+    animation: forceField 5s linear infinite; /* Rotating force field */
+    opacity: 0.4;
+}
+
+.btn:hover, .btn-launch:hover, .gallery-btn:hover {
+    border-color: rgba(0,150,255,0.9); /* Blue Jedi border on hover */
+    box-shadow: 
+        0 0 30px rgba(0,150,255,0.5), /* Blue glow */
+        inset 0 0 30px rgba(255,255,255,0.1); /* Enhanced white inner light */
+    transform: skew(-12deg) perspective(500px) rotateX(8deg) scale(1.08); /* Deeper 3D on hover */
+    animation: forcePulse 1.2s ease-in-out infinite alternate; /* Pulsing like a lightsaber */
+}
+
+.btn:hover::before, .btn-launch:hover::before, .gallery-btn:hover::before {
+    left: 150%;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%), /* Brighter white sweep */
+        radial-gradient(circle, rgba(0,150,255,0.4) 0%, transparent 70%); /* Stronger blue glow */
+}
+
+.btn:hover::after, .btn-launch:hover::after, .gallery-btn:hover::after {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+    opacity: 0.7;
+    background: 
+        repeating-conic-gradient(from 180deg, rgba(255,0,0,0.1) 0deg 15deg, transparent 15deg 30deg), /* Red energy shift */
+        radial-gradient(circle, rgba(0,150,255,0.2) 0%, transparent 50%);
+}
+
+.btn:active, .btn-launch:active, .gallery-btn:active {
+    border-color: rgba(255,0,0,0.9); /* Red Sith border on click */
+    transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(0.92);
+    box-shadow: 
+        0 0 20px rgba(255,0,0,0.6), /* Red shockwave */
+        inset 0 0 25px rgba(255,255,255,0.2);
+    animation: darkSideShock 0.4s ease-out; /* Sith-like feedback */
+}
+
+.btn-launch::before { /* Custom icon with Star Wars flair */
     content: '▶';
     position: absolute;
-    left: 15px;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(0,150,255,0.8); /* Blue glow for icon */
+    animation: saberIgnite 2.5s ease-in-out infinite alternate; /* Lightsaber ignition effect */
 }
-.btn-launch:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.8);
+
+.gallery-btn {
+    padding: 12px 20px;
+    font-size: 20px;
+    margin: 0 8px;
+    clip-path: polygon(12% 0%, 88% 0%, 100% 100%, 0% 100%); /* Tighter imperial shape */
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -60%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
+
+/* Keyframe Animations for Star Wars Effects */
+@keyframes imperialBreathe {
+    0%, 100% { box-shadow: 0 0 15px rgba(255,255,255,0.2), inset 0 0 15px rgba(255,255,255,0.03); }
+    50% { box-shadow: 0 0 25px rgba(255,255,255,0.4), inset 0 0 20px rgba(255,255,255,0.08); }
 }
+
+@keyframes hologramRipple {
+    0% { transform: translateX(-100%) skewX(-12deg); opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%) skewX(-12deg); opacity: 0.5; }
+}
+
+@keyframes forceField {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes forcePulse {
+    0% { filter: brightness(1) contrast(1); box-shadow: 0 0 30px rgba(0,150,255,0.5); }
+    100% { filter: brightness(1.1) contrast(1.2); box-shadow: 0 0 40px rgba(0,150,255,0.8); }
+}
+
+@keyframes darkSideShock {
+    0% { transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(1); }
+    50% { transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(1.05); box-shadow: 0 0 30px rgba(255,0,0,0.8); }
+    100% { transform: skew(-12deg) perspective(500px) rotateX(3deg) scale(0.92); }
+}
+
+@keyframes saberIgnite {
+    0% { text-shadow: 0 0 10px rgba(0,150,255,0.8); transform: translateY(-50%) scale(1); }
+    100% { text-shadow: 0 0 20px rgba(0,150,255,1), 0 0 30px rgba(255,0,0,0.3); transform: translateY(-50%) scale(1.1); }
+}
+
+/* Particle Effects for Star Wars "Force" Feel */
+.btn::after::before, .btn-launch::after::before, .gallery-btn::after::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.9); /* White particles */
+    border-radius: 50%;
+    animation: forceParticles 4s ease-in-out infinite;
+    box-shadow: 0 0 5px rgba(0,150,255,0.5); /* Blue particle glow */
+}
+
+@keyframes forceParticles {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+    25% { transform: translateY(-15px) rotate(90deg); opacity: 0.8; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 0.5; }
+    75% { transform: translateY(-15px) rotate(270deg); opacity: 0.9; }
+}
+
 
 /* Tabs (Navigation) */
 .tabs {
@@ -326,20 +461,20 @@ body {
 
 /* Hide the scrollbar */
 body::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
-.highlight{
+.highlight {
     background-color: rgba(234, 234, 120, 0.718);
     color: #2c3e50;
     border-radius: 5px;
 }
 
-.user{
+.user {
     color: #4ecdc4;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -356,4 +491,8 @@ a{
 
 .image-container:hover .overlay-text {
     opacity: 1; /* Show text on hover */
+}
+
+.text-style {
+    font-family: monospace;
 }

@@ -112,8 +112,8 @@ if (document.getElementById('lookup-form')) {
                 const response = await fetch(url);
                 const data = await response.json();
                 const rows = data.values || [];
-                headers = rows[3]; // Headers are in row 4 (0-indexed as 3)
-                match = rows.slice(4).find(row => row.includes(username)); // Search from row 5 onwards (after headers)
+                headers = rows[4]; // Headers are in row 4 (0-indexed as 3)
+                match = rows.slice(5).find(row => row.includes(username)); // Search from row 5 onwards (after headers)
                 if (match) break;
             }
 

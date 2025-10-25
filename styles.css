@@ -195,7 +195,7 @@ body {
 }
 
 /* Particle Effects for Star Wars "Force" Feel */
-.btn::after::before, .btn-launch::after::before, .gallery-btn::after::before {
+.btn::after::before, .btn-launch::after::before, .play-video-btn::after::before, .gallery-btn::after::before {
     content: '';
     position: absolute;
     width: 3px;

@@ -17,6 +17,7 @@ const playBtn = document.getElementById('play-video-btn');
 const video = document.getElementById('welcome-video');
 const videoSection = document.getElementById('video-section');
 const welcomeSection = document.getElementById('welcome-section');
+const gallerySection = document.getElementById('gallery-section'); // Add this for gallery
 
 if (playBtn && video) {
     // Show play button initially (for mobile or autoplay failure)
@@ -50,6 +51,7 @@ if (video) {
         // Hide video section and show welcome section
         videoSection.style.display = 'none';
         welcomeSection.classList.add('active');
+        if (gallerySection) gallerySection.classList.add('active'); // Add this to show gallery
         // Smooth scroll to welcome section
         welcomeSection.scrollIntoView({ behavior: 'smooth' });
     });

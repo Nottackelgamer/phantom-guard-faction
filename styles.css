@@ -110,7 +110,7 @@ body {
 /* Tab Content */
 .tab-content {
     padding: 40px 20px;
-    background: url('') no-repeat center center/cover; /* Replace with background image URL */
+    background: url('space.jpeg') no-repeat center center/cover; /* Replace with background image URL */
     background-blend-mode: overlay;
     min-height: calc(100vh - 100px);
 }

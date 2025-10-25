@@ -156,3 +156,16 @@ if (document.getElementById('lookup-form')) {
         }
     });
 }
+
+// Disable Right-Click and Inspect Element (Deterrent Only)
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault(); // Disable right-click menu
+});
+
+document.addEventListener('keydown', (e) => {
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U (view source)
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        alert('Inspecting is disabled for security reasons.'); // Optional alert
+    }
+});

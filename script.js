@@ -1,7 +1,7 @@
 // Configurable Image URLs (Update these with your actual URLs if needed)
 const config = {
     welcomeBg: 'Phantom_Guard_wedge.png', // For welcome section background
-    tabBg: 'YOUR_TAB_BG_IMAGE_URL'          // For tab content background (if needed)
+    tabBg: 'space.jpeg'          // For tab content background (if needed)
 };
 
 // Apply backgrounds dynamically

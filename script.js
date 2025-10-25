@@ -4,6 +4,25 @@ const config = {
     tabBg: ''          // For tab content background (if needed)
 };
 
+// Video Play Button (for mobile/autoplay fallback)
+const playBtn = document.getElementById('play-video-btn');
+const video = document.getElementById('welcome-video');
+const videoSection = document.getElementById('video-section');
+const welcomeSection = document.getElementById('welcome-section');
+if (playBtn && video) {
+    playBtn.addEventListener('click', () => {
+        video.play();
+        playBtn.style.display = 'none'; // Hide button after play
+    });
+}
+if (video) {
+    video.addEventListener('ended', () => {
+        videoSection.style.display = 'none';
+        welcomeSection.classList.add('active');
+        welcomeSection.scrollIntoView({ behavior: 'smooth' });
+    });
+}
+
 // Apply backgrounds dynamically
 if (document.querySelector('#welcome-section')) {
     document.querySelector('#welcome-section').style.backgroundImage = `url(${config.welcomeBg})`;

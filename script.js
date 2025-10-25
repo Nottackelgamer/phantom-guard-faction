@@ -22,17 +22,28 @@ if (playBtn && video) {
     // Show play button initially (for mobile or autoplay failure)
     playBtn.style.display = 'block';
 
-    playBtn.addEventListener('click', () => {
-        video.play();
-        playBtn.style.display = 'none'; // Hide button after play
+    playBtn.addEventListener('click', async () => {
+        try {
+            await video.play(); // Wait for play to succeed
+            playBtn.style.display = 'none'; // Hide only on success
+            console.log('Video started playing');
+        } catch (error) {
+            console.error('Video play failed:', error);
+            // On mobile, show a message if play fails
+            playBtn.textContent = 'Tap Again to Play';
+            setTimeout(() => playBtn.textContent = 'Play Video', 2000); // Reset text
+        }
     });
 }
 
 if (video) {
     // Try autoplay
-    video.play().catch(() => {
-        // Autoplay failed (e.g., mobile), keep play button visible
-        if (playBtn) playBtn.style.display = 'block';
+    video.play().then(() => {
+        console.log('Autoplay succeeded');
+        if (playBtn) playBtn.style.display = 'none'; // Hide button if autoplay works
+    }).catch(() => {
+        console.log('Autoplay failed, showing play button');
+        // Keep play button visible
     });
 
     video.addEventListener('ended', () => {
